@@ -1,0 +1,32 @@
+#ifndef _BSP_LED_H
+#define _BSP_LED_H
+
+#include "stm32f10x.h"
+
+#define LED1_GPIO_PORT   GPIOB
+#define LED1_GPIO_PIN	 GPIO_Pin_1
+#define LED1_GPIO_CLK 	 RCC_APB2Periph_GPIOB
+
+#define LED2_GPIO_PORT   GPIOC
+#define LED2_GPIO_PIN	 GPIO_Pin_5
+#define LED2_GPIO_CLK 	 RCC_APB2Periph_GPIOC
+
+#define BEEP_GPIO_PORT   GPIOC
+#define BEEP_GPIO_PIN	 GPIO_Pin_3
+#define BEEP_GPIO_CLK 	 RCC_APB2Periph_GPIOC
+
+#define LED1_OFF     {GPIO_SetBits(LED1_GPIO_PORT,LED1_GPIO_PIN);}
+#define LED2_OFF 	 {GPIO_SetBits(LED2_GPIO_PORT,LED2_GPIO_PIN);}
+#define BEEP_OFF 	 {GPIO_ResetBits(BEEP_GPIO_PORT,BEEP_GPIO_PIN);}
+
+#define LED1_NO 	 {GPIO_ResetBits(LED1_GPIO_PORT,LED1_GPIO_PIN);}
+#define LED2_NO	 	 {GPIO_ResetBits(LED2_GPIO_PORT,LED2_GPIO_PIN);}
+#define BEEP_NO 	 {GPIO_SetBits(BEEP_GPIO_PORT,BEEP_GPIO_PIN);}
+
+#define LED1_TOGGLE  {LED1_GPIO_PORT->ODR ^= LED1_GPIO_PIN;}
+#define LED2_TOGGLE  {LED2_GPIO_PORT->ODR ^= LED2_GPIO_PIN;}
+#define BEEP_TOGGLE  {BEEP_GPIO_PORT->ODR ^= BEEP_GPIO_PIN;}
+
+void LED_GPIO_Config(void);
+#endif
+
